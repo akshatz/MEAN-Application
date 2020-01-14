@@ -11,6 +11,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
+// app.set('views', __dirname + '/views');
 app.engine('.hbs',expressHbs({defaultLayout:'layout', extname:'hbs'}))
 app.set('view engine', '.hbs');
 
