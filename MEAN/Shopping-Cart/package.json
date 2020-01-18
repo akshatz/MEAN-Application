@@ -12,7 +12,8 @@
     "express-handlebars": "^3.1.0",
     "hbs": "^4.1.0",
     "http-errors": "~1.6.3",
+    "mongoose": "^5.8.9",
     "morgan": "~1.9.1",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "~2.5.0"
   }
 }
