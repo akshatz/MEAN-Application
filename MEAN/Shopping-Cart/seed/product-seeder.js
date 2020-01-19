@@ -2,18 +2,15 @@ var Product = require('../models/product');
 
 var mongoose = require('mongoose');
 
-mongoose.connect('localhost:27017/shopping');
+mongoose.connect('127.0.0.1:27017/shopping',{ useNewUrlParser:true});
 
-var products = new Product({
-    imagePath: 'https://upload.wikimedia.org/wikipedia/en/5/5e/Gothiccover.png', 
-    title: 'GOTHIC Video Game',
-    description: 'Awesome Game!!!',
-    price: 10
-});
-var done;
+var products = [];
+
+var done =0;
+
 for (var i = 0; i < products.length; i++){
     products[i].save(function(err, result){
-        done ++;
+        done++;
         if (done === products.length){
             exit()
         }

@@ -6,11 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');
 var mongoose = require('mongoose');
-var routes = require('./routes/index');
+var session = require('express-session');
 
+var routes = require('./routes/index');
 var app = express();
 
-mongoose.connect('localhost:27017/shopping');
+mongoose.connect('mongodb://localhost:27017/', {useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex:true});
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname:'.hbs'}));
 app.set('view engine', '.hbs');
@@ -21,6 +22,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret:'mysupersecret', resave: false,
+ saveUninitialized: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
