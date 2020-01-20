@@ -14,16 +14,16 @@ router.get('/', function(req, res, next) {
 		for (var i = 0; i < docs.length; i+= chunkSize){
 			productChunks.push(docs.slice(i, i+chunkSize));
 		}
-		res.render('shops/index', { title: 'Shopping Cart', products:products });
+		res.render('shops/index', { title: 'Shopping Cart', products: productChunks});
 	});
 });	
 
 router.get('/user/signup', function(req, res, next) {
-	res.render('user/signup', {csrfToken:req.csrfToken()})
+	res.render('user/signup', {title:'Login',csrfToken:req.csrfToken()})
 });
 
 router.post('/user/signup', function(req, res, next){
-	res.redirect('/')
+	res.redirect('/',{title:'Shopping Page'})
 });
 
 module.exports = router;
