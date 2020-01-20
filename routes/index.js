@@ -22,12 +22,12 @@ router.get('/', function(req, res, next) {
 });	
 
 router.get('/user/signup', function(req, res, next) {
-	res.render('user/signup', {title:'Login',csrfToken:req.csrfToken()})
+	res.render('user/signup', {title:'Login',csrfToken:req.csrfToken(), messages:messages, hasErrors:messages.length > 0})
 });
 
-router.post('/user/signup',passport.authenticate('local-signup',{
+router.post('/user/signup',passport.authenticate('local-signup', {
 	successRedirect:'/user/profile',
-	failureRedirect: '/user/signup',
+	failureRedirect:'/user/signup',
 	failureFlash: true
 }));
 
