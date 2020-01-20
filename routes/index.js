@@ -22,6 +22,7 @@ router.get('/', function(req, res, next) {
 });	
 
 router.get('/user/signup', function(req, res, next) {
+	var messages =req.flash('error')
 	res.render('user/signup', {title:'Login',csrfToken:req.csrfToken(), messages:messages, hasErrors:messages.length > 0})
 });
 
