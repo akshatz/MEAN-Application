@@ -7,11 +7,15 @@ var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');
 var mongoose = require('mongoose');
 var session = require('express-session');
+var passport = require('passport');
+var flash = require('connect-flash');
 
 var routes = require('./routes/index');
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/', {useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex:true});
+mongoose.connect('mongodb://127.0.0.1:27017/shopping', { connectTimeoutMS: 1000,useNewUrlParser:true, useUnifiedTopology:true, useCreateIndex:true});
+require('./config/passport');
+
 // view engine setup
 app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname:'.hbs'}));
 app.set('view engine', '.hbs');
@@ -24,6 +28,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({secret:'mysupersecret', resave: false,
  saveUninitialized: false}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
