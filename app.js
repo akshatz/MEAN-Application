@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
-vafr validator = require('express-validator');
+var validator = require('express-validator')
 
 var routes = require('./routes/index');
 var app = express();
