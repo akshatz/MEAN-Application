@@ -17,12 +17,14 @@ passport.use('local-signup', new LocalStrategy({
     passwordField:'password',
     passReqToCallback:true
 }, function(req, email, password, done){
+    req.checkBody('email', 'Invalid Email').notEmpty().isEmail();
+    req.checkBody('password', 'Invalid Password').notEmpty().islength({min:4});
     User.findOne({'email':email}, function (err, user){
         if(err){
             return done(err);
         }
         if(user){
-            return done(null,false, {message:'Email Already used'});
+            return done(null,false, {message:'Please use  used'});
         }
         var newUser = new User();
         newUser.email= email;
@@ -35,3 +37,11 @@ passport.use('local-signup', new LocalStrategy({
         });
     });
 }))
+
+passport.use('local.signin', new LocalStrategy({
+    usernameField: 'email',
+    passwordField:'password',
+    passReqToCallback:true
+}, function(req, email, password, done){
+
+}));
