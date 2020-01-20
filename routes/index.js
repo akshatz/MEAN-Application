@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 		for (var i = 0; i < docs.length; i+= chunkSize){
 			productChunks.push(docs.slice(i, i+chunkSize));
 		}
-		res.render('shops/index', { title: 'Shopping Cart', products:products });
+		res.render('shops/index', { title: 'Shopping Cart', products:productChunks});
 	});
 });	
 
